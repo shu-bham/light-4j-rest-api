@@ -10,7 +10,7 @@ servers:
 paths:
   /load:
     get:
-      summary: "Load 10 users on startup"
+      summary: "Load users from json file"
       description: ""
       operationId: "loadUsers"
       responses:

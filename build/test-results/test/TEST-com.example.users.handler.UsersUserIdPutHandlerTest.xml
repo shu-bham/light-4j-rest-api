@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.users.handler.UsersUserIdPutHandlerTest" tests="1" skipped="1" failures="0" errors="0" timestamp="2021-04-05T09:45:04" hostname="LHTU05CG03551PM" time="0.0">
+<testsuite name="com.example.users.handler.UsersUserIdPutHandlerTest" tests="1" skipped="1" failures="0" errors="0" timestamp="2021-04-05T10:04:40" hostname="LHTU05CG03551PM" time="0.0">
   <properties/>
   <testcase name="testUsersUserIdPutHandlerTest" classname="com.example.users.handler.UsersUserIdPutHandlerTest" time="0.0">
     <skipped/>
