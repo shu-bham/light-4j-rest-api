@@ -1,0 +1,5 @@
+{
+  "description": "Mongo DB configuration",
+  "connectionString": "mongodb://127.0.0.1:27017",
+  "name": "swiftdb"
+}

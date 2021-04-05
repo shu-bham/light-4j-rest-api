@@ -1,0 +1,178 @@
+---
+openapi: "3.0.0"
+info:
+  version: "1.0.0"
+  title: "Users API"
+  license:
+    name: "MIT"
+servers:
+- url: "http://localhost:8080/v1"
+paths:
+  /load:
+    get:
+      summary: "Load users from json file"
+      description: ""
+      operationId: "loadUsers"
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid operation"
+        "500":
+          description: "Server Error"
+  /users/{userId}:
+    get:
+      summary: "Retrieve user details"
+      operationId: "getUser"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "The userId to look-up"
+        required: true
+        schema:
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "500":
+          description: "Server Error"
+
+    put:
+      summary: "Update a user"
+      operationId: "updateUser"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "The userId to be created"
+        required: true
+        schema:
+          type: "integer"
+          format: "int64"
+      requestBody:
+        description: "The updated user details"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: "successful operation"
+          headers:
+            link:
+              description: "A link to the updated record"
+              schema:
+                type: "string"
+        "500":
+          description: "Server Error"
+    delete:
+      summary: "Delete specific user from DB"
+      description: ""
+      operationId: "deleteOne"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "The userId to be deleted"
+        required: true
+        schema:
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "user doesn't exist"
+        "500":
+          description: "Server Error"
+  /users:
+    delete:
+      summary: "Delete all users from DB"
+      description: ""
+      operationId: "deleteAll"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+        "500":
+          description: "Server Error"
+    post:
+      summary: "Insert users"
+      description: ""
+      operationId: "insertAll"
+      requestBody:
+        description: "The updated user details"
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: "successful operation"
+          headers:
+            link:
+              description: "links to the inserted records"
+              schema:
+                type: "array"
+                items:
+                  type: "string"
+        "500":
+          description: "Server Error"
+components:
+  schemas:
+    Address:
+      type: "object"
+      properties:
+        street:
+          type: "string"
+        suite:
+          type: "string"
+        city:
+          type: "string"
+        zipcode:
+          type: "string"
+        geo:
+          $ref: "#/components/schemas/Geo"
+    Geo:
+      type: "object"
+      properties:
+        lat:
+          type: "string"
+        long:
+          type: "string"
+    Company:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        catchphrase:
+          type: "string"
+        bs:
+          type: "string"
+    User:
+      type: "object"
+      properties:
+        studentId:
+          type: "integer"
+          format: "int64"
+        username:
+          type: "string"
+        name:
+          type: "string"
+        email:
+          type: "string"
+        address:
+          $ref: "#/components/schemas/Address"
+        website:
+          type: "string"
+        phone:
+          type: "string"
+        company:
+          $ref: "#/components/schemas/Company"

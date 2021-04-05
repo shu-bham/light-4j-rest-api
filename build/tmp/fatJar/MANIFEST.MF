@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Implementation-Title: Gradle Jar File Example
+Implementation-Version: 3.0.1
+Main-Class: com.networknt.server.Server
+
